@@ -1,25 +1,29 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-export default function Player({ name, symbol, isActive }) {
+export default function Player({ name, symbol, isActive, onChangeName }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [enterePlayerName, setEneteredPlayerName] = useState(name);
+  const [playerName, setPlayerName] = useState(name);
 
   function handleEditClick() {
     setIsEditing((editing) => !editing);
+
+    if (isEditing) {
+      onChangeName(symbol, playerName);
+    }
   }
 
   function handleNameChange(e) {
-    setEneteredPlayerName(e.target.value);
+    setPlayerName(e.target.value);
   }
 
-  let playerName = <span className="player-name">{enterePlayerName}</span>;
+  let editablPlayerName = <span className="player-name">{playerName}</span>;
 
   if (isEditing) {
-    playerName = (
+    editablPlayerName = (
       <input
         type="text"
         required
-        value={enterePlayerName}
+        value={playerName}
         onChange={handleNameChange}
       />
     );
@@ -28,7 +32,7 @@ export default function Player({ name, symbol, isActive }) {
   return (
     <li className={isActive ? "active" : undefined}>
       <span className="player">
-        {playerName}
+        {editablPlayerName}
         <span className="player-symbol">{symbol}</span>
       </span>
       <button onClick={handleEditClick}>{isEditing ? "Save" : "Edit"}</button>
