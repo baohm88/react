@@ -1,12 +1,1 @@
-{
-  "events": [
-    {
-      "title": "A new event",
-      "image": "https://cdn.muenchen-p.de/fl_progressive,q_65/.imaging/stk/responsive/teaser300/dms/va-2016/muenchner-christkindlmarkt/christkindlmarkt-marienplat-logo-hp/document/christkindlmarkt-marienplat-logo-hp.jpg",
-      "date": "2022-10-01",
-      "description": "Some awesome event!",
-      "id": "2a42fcc4-ea21-4bdd-abf6-c40006dc66a9"
-    }
-  ],
-  "users": []
-}
+{"events":[{"title":"Test 2","image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLig1H5cfDbpeQEeeMn1zGuHLRJZ87Y-GT2w&s","date":"2024-09-07","description":"Here is the test 2 event.","id":"7089893d-6dbd-481b-8560-e5a32bb5be47"},{"title":"Test 1","image":"https://www.elementalproduction.com/wp-content/uploads/2021/05/corporate-events.jpg","date":"2024-09-07","description":"This is test 1","id":"36ef1f33-57f3-444c-b418-a2973900afb2"},{"title":"A new event","image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDQ955rqJU-S7HyaRXYegnKttxFyD34DG0gUrgL1QmA6Gbs7x_xAMlKcONgFzP4Abt2Ik&usqp=CAU","date":"2022-10-01","description":"Some awesome event!","id":"2a42fcc4-ea21-4bdd-abf6-c40006dc66a9"}],"users":[{"email":"bao@gmail.com","password":"$2a$12$AdSsuXN6HnAOiAV3RIhXguwEKEj.64NOuRNKuG.Cjndhlp3sHO3vK","id":"b62745ce-9b07-41d1-9dcb-2fe5f27f249d"},{"email":"1@gmail.com","password":"$2a$12$PcJCAFtbo0ia51OolU8D8ec49m68B5YV5zwaId3U/Rb3V4ZcLOs.2","id":"e9c4efcf-7ab1-420b-8bdd-b098eb19f768"}]}
