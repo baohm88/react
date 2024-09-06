@@ -1,7 +1,7 @@
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import "./App.css";
-import ListUser from "./components/ListUser";
 import CreateUser from "./components/CreateUser";
+import ListUser from "./components/ListUser";
 import EditUser from "./components/EditUser";
 
 function App() {
@@ -15,13 +15,13 @@ function App() {
               <Link to="/">List Users</Link>
             </li>
             <li>
-              <Link to="user/create">Create User</Link>
+              <Link to="/user/create">Create User</Link>
             </li>
           </ul>
         </nav>
 
         <Routes>
-          <Route index element={<ListUser />} />
+          <Route path="/" element={<ListUser />} />
           <Route path="user/create" element={<CreateUser />} />
           <Route path="user/:id/edit" element={<EditUser />} />
         </Routes>

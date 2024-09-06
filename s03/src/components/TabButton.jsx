@@ -1,5 +1,11 @@
 import React from "react";
 
-export default function TabButton() {
-  return <div>TabButton</div>;
+export default function TabButton({ children, onSelect, isActive }) {
+  return (
+    <li>
+      <button className={isActive ? "active" : null} onClick={onSelect}>
+        {children}
+      </button>
+    </li>
+  );
 }
