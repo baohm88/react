@@ -16,7 +16,6 @@ export default function CreateUser() {
     e.preventDefault();
 
     axios.post("http://localhost:80/api/user/save", inputs).then((response) => {
-      console.log(response.data);
       navigate("/");
     });
   }
