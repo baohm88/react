@@ -1,83 +1,92 @@
+import { useState, useEffect } from "react";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-export default function EditUser() {
+export default function ListUser() {
   const navigate = useNavigate();
-  const [inputs, setInputs] = useState({
-    name: "",
-    email: "",
-    mobile: "",
-  });
+
+  const [inputs, setInputs] = useState([]);
+
   const { id } = useParams();
 
   useEffect(() => {
-    getUser(id);
+    getUser();
   }, []);
 
-  function getUser(id) {
-    axios
-      .get(`http://localhost:80/api/user/${id}/edit`)
-      .then(function (response) {
-        setInputs(response.data);
-      });
+  function getUser() {
+    axios.get(`http://localhost:80/api/user/${id}`).then(function (response) {
+      console.log(response.data);
+      setInputs(response.data);
+    });
   }
 
-  function handleChange(e) {
-    setInputs((prevInputs) => ({
-      ...prevInputs,
-      [e.target.name]: e.target.value,
-    }));
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setInputs((values) => ({ ...values, [name]: value }));
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
     axios
       .put(`http://localhost:80/api/user/${id}/edit`, inputs)
-      .then((response) => {
+      .then(function (response) {
+        console.log(response.data);
         navigate("/");
       });
-  }
-
+  };
   return (
     <div>
-      <h1>Edit User</h1>
+      <h1>Edit user</h1>
       <form onSubmit={handleSubmit}>
-        <p>
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            required
-            value={inputs.name}
-            onChange={handleChange}
-          />
-        </p>
-        <p>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            required
-            value={inputs.email}
-            onChange={handleChange}
-          />
-        </p>
-        <p>
-          <label htmlFor="mobile">Mobile:</label>
-          <input
-            type="number"
-            name="mobile"
-            id="mobile"
-            required
-            value={inputs.mobile}
-            onChange={handleChange}
-          />
-        </p>
-        <button>Save</button>
+        <table cellSpacing="10">
+          <tbody>
+            <tr>
+              <th>
+                <label>Name: </label>
+              </th>
+              <td>
+                <input
+                  value={inputs.name}
+                  type="text"
+                  name="name"
+                  onChange={handleChange}
+                />
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label>Email: </label>
+              </th>
+              <td>
+                <input
+                  value={inputs.email}
+                  type="text"
+                  name="email"
+                  onChange={handleChange}
+                />
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label>Mobile: </label>
+              </th>
+              <td>
+                <input
+                  value={inputs.mobile}
+                  type="text"
+                  name="mobile"
+                  onChange={handleChange}
+                />
+              </td>
+            </tr>
+            <tr>
+              <td colSpan="2" align="right">
+                <button>Save</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </form>
     </div>
   );

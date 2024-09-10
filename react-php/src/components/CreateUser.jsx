@@ -1,60 +1,63 @@
+import { useState } from "react";
 import axios from "axios";
-import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function CreateUser() {
-  const [inputs, setInputs] = useState({});
+export default function ListUser() {
   const navigate = useNavigate();
 
-  function handleChange(e) {
-    setInputs((prevInputs) => {
-      return { ...prevInputs, [e.target.name]: e.target.value };
-    });
-  }
+  const [inputs, setInputs] = useState([]);
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setInputs((values) => ({ ...values, [name]: value }));
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-    axios.post("http://localhost:80/api/user/save", inputs).then((response) => {
-      navigate("/");
-    });
-  }
-
+    axios
+      .post("http://localhost:80/api/user/save", inputs)
+      .then(function (response) {
+        navigate("/");
+      });
+  };
   return (
     <div>
-      <h1>Create User</h1>
+      <h1>Create user</h1>
       <form onSubmit={handleSubmit}>
-        <p>
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            required
-            onChange={handleChange}
-          />
-        </p>
-        <p>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            required
-            onChange={handleChange}
-          />
-        </p>
-        <p>
-          <label htmlFor="mobile">Mobile:</label>
-          <input
-            type="number"
-            name="mobile"
-            id="mobile"
-            required
-            onChange={handleChange}
-          />
-        </p>
-        <button>Save</button>
+        <table cellSpacing="10">
+          <tbody>
+            <tr>
+              <th>
+                <label>Name: </label>
+              </th>
+              <td>
+                <input type="text" name="name" onChange={handleChange} />
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label>Email: </label>
+              </th>
+              <td>
+                <input type="text" name="email" onChange={handleChange} />
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label>Mobile: </label>
+              </th>
+              <td>
+                <input type="text" name="mobile" onChange={handleChange} />
+              </td>
+            </tr>
+            <tr>
+              <td colSpan="2" align="right">
+                <button>Save</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </form>
     </div>
   );
