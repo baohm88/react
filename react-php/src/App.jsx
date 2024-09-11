@@ -7,7 +7,6 @@ import EditUser from "./components/EditUser";
 function App() {
   return (
     <div className="App">
-      <h1>Hello World</h1>
       <BrowserRouter>
         <nav>
           <ul>
